@@ -3,11 +3,14 @@ package rayanhiva.telemedicine.hamrahsalamatmini;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.entity.mime.HttpMultipartMode;
@@ -16,6 +19,9 @@ import org.apache.http.entity.mime.content.ByteArrayBody;
 import org.apache.http.entity.mime.content.ContentBody;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpParams;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
@@ -43,7 +49,7 @@ import rayanhiva.telemedicine.hamrahsalamatmini.R;
 
 public class SubmitHealthActivity extends Activity {
 
-	protected static final String FILE_SERVER_URL = "http://5.200.78.14/api/v1/kiosk_services";
+	protected static final String FILE_SERVER_URL = "http://5.200.78.14:80/api/v1/kiosk_services";
 	Handler mHandler ;
 	private ProgressDialog mDialog;
 	private EditText mEditIBPSys;
@@ -227,7 +233,7 @@ public class SubmitHealthActivity extends Activity {
 					HttpClient httpclient = new DefaultHttpClient();
 					HttpPost httppost = new HttpPost(FILE_SERVER_URL);
 					JSONObject json = new JSONObject();
-					json.put("phone", UserProfile.PhoneNumber);
+					json.put("mobile", UserProfile.PhoneNumber);
 					json.put("national_id", UserProfile.NationalID);
 					json.put("device_id", "");
 					json.put("nibp_sys", ibpSys);
@@ -239,8 +245,15 @@ public class SubmitHealthActivity extends Activity {
 					String jsonString = json.toString();
 					Log.d("HTTP", jsonString);
 					StringEntity body = new StringEntity(jsonString);
-					httppost.addHeader("data", jsonString);
-//					httppost.setEntity(body);
+//					httppost.addHeader("data", jsonString);
+					ArrayList<NameValuePair> parameters = new ArrayList<NameValuePair>();
+					
+					parameters.add(new BasicNameValuePair("data", jsonString));
+//					HttpParams params = new BasicHttpParams();
+//					params.setParameter("data", jsonString);
+					httppost.setEntity(new UrlEncodedFormEntity(parameters));
+//					httppost.setParams(params);
+//					Log.d("HTTP", httppost.getParams().getParameter("data").toString());
 					HttpResponse response = httpclient.execute(httppost);
 					HttpEntity responseEntity = response.getEntity();
 					Log.d("HTTP", EntityUtils.toString(responseEntity, EntityUtils.getContentCharSet(responseEntity)));
