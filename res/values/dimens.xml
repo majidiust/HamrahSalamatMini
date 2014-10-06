@@ -1,0 +1,23 @@
+<resources>
+    <!-- Not SW600 -->
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">0dp</dimen>
+    <dimen name="activity_vertical_margin">0dp</dimen>
+    <dimen name="btn_main_width">256dp</dimen>
+    <dimen name="btn_main_height">85dp</dimen>
+    <dimen name="btn_main_margin">32dp</dimen>
+    <dimen name="img_lock_size">256dp</dimen>
+    <dimen name="login_horizontal_margin">8dp</dimen>
+    <dimen name="login_vertical_margin">32dp</dimen>
+    <dimen name="login_text_size">20sp</dimen>
+    <dimen name="login_btn_enter_width">140dp</dimen>
+    <dimen name="login_btn_forgot_width">186dp</dimen>
+    <dimen name="login_btn_height">48dp</dimen>
+    <dimen name="info_gender_margin">64dp</dimen>
+    <dimen name="info_button_width">192dp</dimen>
+    <dimen name="info_button_height">64dp</dimen>
+    <dimen name="submit_button_width">212dp</dimen>
+    <dimen name="submit_button_height">64dp</dimen>
+    <dimen name="generic_vertical_margin_big">64dp</dimen>
+</resources>

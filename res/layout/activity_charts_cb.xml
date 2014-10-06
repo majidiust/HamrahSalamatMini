@@ -1,0 +1,261 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".ChartsCBActivity" >
+
+    <ImageView
+        android:id="@+id/imageViewBanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/banner" />
+
+    <RelativeLayout
+        android:id="@+id/spo2Layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageViewBanner"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/layout_border"
+        android:padding="32dp" >
+
+        <RelativeLayout
+            android:id="@+id/chartSPO2Layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true" >
+
+            <android.opengl.GLSurfaceView
+                android:id="@+id/chartSPO2"
+                android:layout_width="400dp"
+                android:layout_height="200dp" />
+
+            <TextView
+                android:id="@+id/textViewSPO2Message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/chartSPO2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="32dp"
+                android:text="دستگاه غیرفعال است"
+                android:textSize="30sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/spo2ValuesLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_toRightOf="@+id/chartSPO2Layout" >
+
+            <TextView
+                android:id="@+id/textViewSPO2ValueLabel"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="@string/lbl_spo2_value"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/textViewSPO2Value"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="32dp"
+                android:layout_toRightOf="@+id/textViewSPO2ValueLabel"
+                android:text="0"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/textViewSPO2PRLabel"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/textViewSPO2ValueLabel"
+                android:layout_marginTop="16dp"
+                android:text="@string/lbl_spo2_pr"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/textViewSPO2PRValue"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/textViewSPO2PRLabel"
+                android:layout_below="@+id/textViewSPO2Value"
+                android:layout_marginRight="32dp"
+                android:layout_toRightOf="@+id/textViewSPO2PRLabel"
+                android:text="0"
+                android:textSize="25sp" />
+
+            <ImageButton
+                android:id="@+id/imgBtnSPO2Save"
+                android:layout_width="237dp"
+                android:layout_height="77dp"
+                android:layout_below="@+id/textViewSPO2PRValue"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/btn_style_save" />
+
+            <ImageButton
+                android:id="@+id/imgBtnSPO2Send"
+                android:layout_width="237dp"
+                android:layout_height="77dp"
+                android:layout_below="@+id/imgBtnSPO2Save"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/btn_style_send" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/ecgLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spo2Layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/layout_border"
+        android:padding="32dp" >
+
+        <RelativeLayout
+            android:id="@+id/ecgChartsLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true" >
+
+            <RelativeLayout
+                android:id="@+id/ecgChartsLayoutLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textViewECG1ChartTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="ECG I"
+                    android:textSize="25sp" />
+
+                <android.opengl.GLSurfaceView
+                    android:id="@+id/chartECG1"
+                    android:layout_width="320dp"
+                    android:layout_height="200dp"
+                    android:layout_below="@+id/textViewECG1ChartTitle"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ecgChartsLayoutRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true" >
+
+                <TextView
+                    android:id="@+id/textViewECG2ChartTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="ECG II"
+                    android:textSize="25sp" />
+
+                <android.opengl.GLSurfaceView
+                    android:id="@+id/chartECG2"
+                    android:layout_width="320dp"
+                    android:layout_height="200dp"
+                    android:layout_below="@+id/textViewECG2ChartTitle"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+        </RelativeLayout>
+        
+        <RelativeLayout
+            android:id="@+id/ecgValuesLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/ecgChartsLayout"
+            android:layout_marginTop="16dp" >
+            
+			<ImageButton
+                android:id="@+id/imgBtnECGSend"
+                android:layout_width="237dp"
+                android:layout_height="77dp"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/btn_style_send" />
+
+            <ImageButton
+                android:id="@+id/imgBtnECGSave"
+                android:layout_width="237dp"
+                android:layout_height="77dp"
+                android:layout_toRightOf="@+id/imgBtnECGSend"
+                android:background="@drawable/btn_style_save" />
+            
+			<ImageView
+		        android:id="@+id/imageViewECGHeart"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_toRightOf="@+id/imgBtnECGSave"
+		        android:layout_alignParentTop="true"
+		        android:layout_alignBottom="@+id/imgBtnECGSave"
+		        android:layout_marginLeft="16dp"
+		        android:src="@drawable/heart" />
+
+            <TextView
+                android:id="@+id/textViewECGValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_toRightOf="@+id/imageViewECGHeart"
+                android:layout_centerInParent="true"
+                android:text="0"
+                android:textSize="25sp" />
+        </RelativeLayout>
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/statusLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ecgLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/layout_border"
+        android:padding="16dp" >
+        
+        <ProgressBar
+            android:id="@+id/progBarBattery"
+            android:layout_width="64dp"
+            android:layout_height="32dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:progressDrawable="@drawable/progress_style"
+            android:rotation="-90"
+            android:max="100"
+            android:progress="60" />
+        
+        <ToggleButton 
+            android:id="@+id/tglBtnDeviceConnection"
+            android:layout_width="285dp"
+            android:layout_height="77dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:background="@drawable/btn_style_connection"
+            android:textOn=""
+            android:textOff=""
+            android:textSize="25sp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

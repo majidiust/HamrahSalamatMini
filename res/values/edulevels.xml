@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="edulevels_array">
+        <item>زیر دیپلم</item>
+        <item>دیپلم</item>
+        <item>فوق دیپلم</item>
+        <item>لیسانس</item>
+        <item>فوق لیسانس</item>
+        <item>دکترا</item>
+        <item>بالاتر از دکترا</item>
+    </string-array>
+
+</resources>

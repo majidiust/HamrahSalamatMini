@@ -1,0 +1,98 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="rayanhiva.telemedicine.hamrahsalamatmini"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="17" />
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="rayanhiva.telemedicine.hamrahsalamatmini.MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="sensorPortrait" >
+        </activity>
+        <activity
+            android:name="rayanhiva.telemedicine.hamrahsalamatmini.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:screenOrientation="sensorPortrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="rayanhiva.telemedicine.hamrahsalamatmini.MainActivity" />
+        </activity>
+        <activity
+            android:name="rayanhiva.telemedicine.hamrahsalamatmini.HomeActivity"
+            android:label="@string/title_activity_home"
+            android:screenOrientation="sensorPortrait" >
+        </activity>
+        <activity
+            android:name="rayanhiva.telemedicine.hamrahsalamatmini.DevicesActivity"
+            android:label="@string/title_activity_devices"
+            android:screenOrientation="sensorPortrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="rayanhiva.telemedicine.hamrahsalamatmini.HomeActivity" />
+        </activity>
+        <activity
+            android:name="rayanhiva.telemedicine.hamrahsalamatmini.SplashActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="sensorPortrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="rayanhiva.telemedicine.hamrahsalamatmini.ChartsCBActivity"
+            android:label="@string/title_activity_charts_cb"
+            android:screenOrientation="sensorPortrait" >
+        </activity>
+
+        <receiver android:name="rayanhiva.telemedicine.hamrahsalamatmini.SmsReceiver" >
+            <intent-filter android:priority="1000" >
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="rayanhiva.telemedicine.hamrahsalamatmini.RegisterConfrim"
+            android:label="@string/title_activity_register_confrim"
+            android:screenOrientation="sensorPortrait" >
+        </activity>
+        <activity
+            android:name="rayanhiva.telemedicine.hamrahsalamatmini.ParametersMainActivity"
+            android:label="@string/title_activity_parameters_main" >
+        </activity>
+        <activity
+            android:name="rayanhiva.telemedicine.hamrahsalamatmini.PersonalInfoActivity"
+            android:label="@string/title_activity_personal_info" >
+        </activity>
+        <activity
+            android:name="rayanhiva.telemedicine.hamrahsalamatmini.SubmitHealthActivity"
+            android:label="@string/title_activity_submit_health" >
+        </activity>
+        <activity
+            android:name="rayanhiva.telemedicine.hamrahsalamatmini.MedicalMessageActivity"
+            android:label="@string/title_activity_medical_message"
+            android:screenOrientation="sensorLandscape" >
+        </activity>
+    </application>
+
+</manifest>
