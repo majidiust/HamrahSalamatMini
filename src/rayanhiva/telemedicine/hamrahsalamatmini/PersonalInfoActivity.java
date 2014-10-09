@@ -20,6 +20,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import rayanhiva.telemedicine.hamrahsalamatmini.R;
 
 public class PersonalInfoActivity extends Activity {
@@ -226,6 +227,8 @@ public class PersonalInfoActivity extends Activity {
 						UserProfile.BirthDate = birthdate;
 					}					
 					UserProfile.Marital = btnSingle.isChecked() ? MaritalStatus.MS_Single : MaritalStatus.MS_Married;
+					
+					ShowToast("اطلاعات شما ثبت گردید");
 				} catch (Exception ex) {
 					Log.d("PersonalInfo", ex.getMessage());
 				}
@@ -240,4 +243,8 @@ public class PersonalInfoActivity extends Activity {
 		return true;
 	}
 
+	private void ShowToast(String message) {
+		Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT)
+		.show();
+	}
 }

@@ -35,6 +35,9 @@ public class MainActivity extends Activity {
 		mHandler = new Handler();
 		mDb = new DatabaseHandler(this);
 		final Context tmpContext = this;
+		
+		UserProfile.IMEI = SimUtility.getIMEI(tmpContext);
+		
 		ImageButton btn = (ImageButton) findViewById(R.id.imageButtonLogin);
 		btn.setOnClickListener(new OnClickListener() {
 			@Override

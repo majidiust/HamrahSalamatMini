@@ -100,4 +100,11 @@ public class SimUtility {
 		}
 		return simState;
 	}
+
+	public static String getIMEI(Context context) {
+		TelephonyManager telMgr = (TelephonyManager) context
+		.getSystemService(Context.TELEPHONY_SERVICE);
+		
+		return telMgr.getDeviceId();
+	}
 }

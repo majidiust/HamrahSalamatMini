@@ -1,8 +1,5 @@
 package rayanhiva.telemedicine.hamrahsalamatmini;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -49,7 +46,7 @@ import rayanhiva.telemedicine.hamrahsalamatmini.R;
 
 public class SubmitHealthActivity extends Activity {
 
-	protected static final String FILE_SERVER_URL = "http://5.200.78.14:80/api/v1/kiosk_services";
+	protected static final String FILE_SERVER_URL = "http://health-cloud.ir:80/api/v1/kiosk_services";//  5.200.78.14:80/api/v1/kiosk_services";
 	Handler mHandler ;
 	private ProgressDialog mDialog;
 	private EditText mEditIBPSys;
@@ -170,11 +167,11 @@ public class SubmitHealthActivity extends Activity {
 				Messages.add(OxygenMessage);
 			}
 			DialogMessage += " ارسال خواهد شد. ";
-			ShowAlert(DialogMessage);
+			//			ShowAlert(DialogMessage);
 
 			//	send SMS
 			try {
-				SendMessage(Messages);
+				//				SendMessage(Messages);
 			} catch (Exception ex) {
 				Log.d("SubmitHealth", ex.getMessage());
 			}
@@ -240,23 +237,35 @@ public class SubmitHealthActivity extends Activity {
 					json.put("nibp_dia", ibpDia);
 					json.put("nibp_message", "");
 					json.put("heart_rate", hr);
+					json.put("blood_sugar", glucose);
 					json.put("spo2", spo2);
 					json.put("spo2_message", "");
+					json.put("msg_platform", "mobileApp");
 					String jsonString = json.toString();
 					Log.d("HTTP", jsonString);
 					StringEntity body = new StringEntity(jsonString);
-//					httppost.addHeader("data", jsonString);
+					//					httppost.addHeader("data", jsonString);
 					ArrayList<NameValuePair> parameters = new ArrayList<NameValuePair>();
-					
+
 					parameters.add(new BasicNameValuePair("data", jsonString));
-//					HttpParams params = new BasicHttpParams();
-//					params.setParameter("data", jsonString);
+					//					HttpParams params = new BasicHttpParams();
+					//					params.setParameter("data", jsonString);
 					httppost.setEntity(new UrlEncodedFormEntity(parameters));
-//					httppost.setParams(params);
-//					Log.d("HTTP", httppost.getParams().getParameter("data").toString());
+					//					httppost.setParams(params);
+					//					Log.d("HTTP", httppost.getParams().getParameter("data").toString());
 					HttpResponse response = httpclient.execute(httppost);
 					HttpEntity responseEntity = response.getEntity();
-					Log.d("HTTP", EntityUtils.toString(responseEntity, EntityUtils.getContentCharSet(responseEntity)));
+					final String responseString = EntityUtils.toString(responseEntity, EntityUtils.getContentCharSet(responseEntity));
+					Log.d("HTTP", responseString);
+					mHandler.post(new Runnable() {
+
+						@Override
+						public void run() {
+							ShowToast(responseString);
+						}
+					});
+					finish();
+
 				} catch (Exception ex) {
 					Log.d("HTTP", "Exception: " + ex.getMessage());
 				}
@@ -272,7 +281,7 @@ public class SubmitHealthActivity extends Activity {
 	}
 
 	private void ShowToast(String message) {
-		Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT)
+		Toast.makeText(getApplicationContext(), message, 5000)// Toast.LENGTH_SHORT)
 		.show();
 	}
 }

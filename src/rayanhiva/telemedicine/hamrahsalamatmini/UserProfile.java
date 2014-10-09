@@ -3,7 +3,7 @@ package rayanhiva.telemedicine.hamrahsalamatmini;
 public class UserProfile {
 	public static String FirstName = "";
 	public static String LastName = "";
-	public static String NationalID = "";
+	public static String NationalID = "0123456789";
 	public static String DeviceID = "";
 	public static int BirthProvince = 0;
 	public static int ResidenceProvince = 0;
@@ -13,4 +13,5 @@ public class UserProfile {
 	public static String BirthDate = "";
 	public static String PhoneNumber = "";
 	public static MaritalStatus Marital = MaritalStatus.MS_Single;
+	public static String IMEI = "";
 }
