@@ -7,6 +7,9 @@
     <string name="title_activity_login">ورود به سامانه</string>
     <string name="lbl_phone">شماره تلفن</string>
     <string name="lbl_pass">کلمه عبور</string>
+    <string name="lbl_pass_confirm">تکرار کلمه عبور</string>
+    <string name="lbl_national_id">کد ملی</string>
+    <string name="lbl_validation_code">کد دریافتی</string>
     <string name="title_activity_home">خانه</string>
     <string name="lbl_exit">خروج</string>
     <string name="lbl_help">راهنما</string>
@@ -52,7 +55,9 @@
     <string name="title_activity_personal_info">ویرایش اطلاعات شخصی</string>
     <string name="title_activity_submit_health">ارسال اطلاعات سلامت</string>
     <string name="title_activity_medical_message">MedicalMessageActivity</string>
-	<string name="activity_medical_message">پیام جدیدی از پزشک</string>
-	<string name="lbl_oxygen_pulse">پالس</string>
-	<string name="lbl_oxygen_percent">درصد اکسیژن خون</string>
+    <string name="activity_medical_message">پیام جدیدی از پزشک</string>
+    <string name="lbl_oxygen_pulse">پالس</string>
+    <string name="lbl_oxygen_percent">درصد اکسیژن خون</string>
+    <string name="title_activity_signup">ثبت نام در سیستم</string>
+
 </resources>

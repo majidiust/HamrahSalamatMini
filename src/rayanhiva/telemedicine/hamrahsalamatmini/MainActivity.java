@@ -24,20 +24,21 @@ public class MainActivity extends Activity {
 	Handler mHandler;
 	DatabaseHandler mDb = null;
 	private ProgressDialog mDialog;
+	private Context This = this;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-//		ActionBar actionBar = 
-//		actionBar.hide();		
-		
+		//		ActionBar actionBar = 
+		//		actionBar.hide();		
+
 		mHandler = new Handler();
 		mDb = new DatabaseHandler(this);
 		final Context tmpContext = this;
-		
+
 		UserProfile.IMEI = SimUtility.getIMEI(tmpContext);
-		
+
 		ImageButton btn = (ImageButton) findViewById(R.id.imageButtonLogin);
 		btn.setOnClickListener(new OnClickListener() {
 			@Override
@@ -101,19 +102,19 @@ public class MainActivity extends Activity {
 
 	private void ShowToast(String message) {
 		Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT)
-				.show();
+		.show();
 	}
-	
+
 	public void ShowAlert()
 	{
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage("Look at this dialog!")
-		       .setCancelable(false)
-		       .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-		           public void onClick(DialogInterface dialog, int id) {
-		                //do things
-		           }
-		       });
+		.setCancelable(false)
+		.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+				//do things
+			}
+		});
 		AlertDialog alert = builder.create();
 		alert.show();
 	}
@@ -121,7 +122,32 @@ public class MainActivity extends Activity {
 	public void ShowDialog(String title, String message) {
 		mDialog = ProgressDialog.show(this, title, message, true);
 		TextView tvMessage = (TextView) mDialog
-				.findViewById(android.R.id.message);
+		.findViewById(android.R.id.message);
 		tvMessage.setGravity(Gravity.RIGHT);
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				UserProfile.saveProfile(This);
+			}
+		}).start();
+
+		super.onSaveInstanceState(outState);
+	}
+
+	@Override
+	protected void onStop() {
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				UserProfile.saveProfile(This);
+			}
+		}).start();
+		super.onStop();
 	}
 }

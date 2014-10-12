@@ -1,5 +1,8 @@
 package rayanhiva.telemedicine.hamrahsalamatmini;
 
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.app.ActionBar;
@@ -42,6 +45,14 @@ public class SplashActivity extends Activity {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+			}
+		}).start();
+	
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				UserProfile.loadProfile(tmpContext);
 			}
 		}).start();
 	}

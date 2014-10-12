@@ -104,7 +104,7 @@ public class SubmitHealthActivity extends Activity {
 	}
 
 	public void CreateMessage(){
-		String pressureSys = mEditIBPDia.getText().toString();
+		String pressureSys = mEditIBPSys.getText().toString();
 		String pressureDia = mEditIBPDia.getText().toString();
 		String heartRate = mEditHeartRate.getText().toString();
 		String glucose = mEditBloodSugar.getText().toString();
