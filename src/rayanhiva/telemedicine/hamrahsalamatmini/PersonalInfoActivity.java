@@ -41,6 +41,11 @@ public class PersonalInfoActivity extends Activity {
 	private Spinner mSpinMonth;
 	private Spinner mSpinYear;
 
+	private RadioButton mRadioMale;
+	private RadioButton mRadioFemale;
+	private RadioButton mRadioSingle;
+	private RadioButton mRadioMarried;
+
 	private ImageButton mBtnSubmit;
 
 	@Override
@@ -64,7 +69,7 @@ public class PersonalInfoActivity extends Activity {
 		}
 
 		Typeface font = Typeface.createFromAsset(getAssets(),
-				"bnazaninbd_0.ttf");
+		"bnazaninbd_0.ttf");
 
 		// Set items in the spinner for province of residence
 		mSpinResidenceProvince = (Spinner)findViewById(R.id.spinnerResidenceProvince);
@@ -132,61 +137,61 @@ public class PersonalInfoActivity extends Activity {
 		arrayAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
 		mSpinYear.setAdapter(arrayAdapter);
 
-		final RadioButton btnMale = (RadioButton)findViewById(R.id.radioMale);
-		final RadioButton btnFemale = (RadioButton)findViewById(R.id.radioFemale);
+		mRadioMale = (RadioButton)findViewById(R.id.radioMale);
+		mRadioFemale = (RadioButton)findViewById(R.id.radioFemale);
 
-		btnMale.setTypeface(font);
-		btnFemale.setTypeface(font);
+		mRadioMale.setTypeface(font);
+		mRadioFemale.setTypeface(font);
 
-		btnMale.setChecked(true);
-		btnFemale.setChecked(false);
+		mRadioMale.setChecked(true);
+		mRadioFemale.setChecked(false);
 
-		btnMale.setOnClickListener(new OnClickListener() {
+		mRadioMale.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				btnMale.setChecked(true);
-				btnFemale.setChecked(false);
+				mRadioMale.setChecked(true);
+				mRadioFemale.setChecked(false);
 			}
 		});
 
-		btnFemale.setOnClickListener(new OnClickListener() {
+		mRadioFemale.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				btnFemale.setChecked(true);
-				btnMale.setChecked(false);
+				mRadioFemale.setChecked(true);
+				mRadioMale.setChecked(false);
 			}
 		});
 
-		final RadioButton btnSingle = (RadioButton)findViewById(R.id.radioSingle);
-		final RadioButton btnMarried = (RadioButton)findViewById(R.id.radioMarried);
+		mRadioSingle = (RadioButton)findViewById(R.id.radioSingle);
+		mRadioMarried = (RadioButton)findViewById(R.id.radioMarried);
 
-		btnSingle.setTypeface(font);
-		btnMarried.setTypeface(font);
+		mRadioSingle.setTypeface(font);
+		mRadioMarried.setTypeface(font);
 
-		btnSingle.setChecked(true);
-		btnMarried.setChecked(false);
+		mRadioSingle.setChecked(true);
+		mRadioMarried.setChecked(false);
 
-		btnSingle.setOnClickListener(new OnClickListener() {
+		mRadioSingle.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				btnSingle.setChecked(true);
-				btnMarried.setChecked(false);
+				mRadioSingle.setChecked(true);
+				mRadioMarried.setChecked(false);
 			}
 		});
 
-		btnMarried.setOnClickListener(new OnClickListener() {
+		mRadioMarried.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				btnMarried.setChecked(true);
-				btnSingle.setChecked(false);
+				mRadioMarried.setChecked(true);
+				mRadioSingle.setChecked(false);
 			}
 		});
 
@@ -212,7 +217,7 @@ public class PersonalInfoActivity extends Activity {
 					selectedIndex = mSpinEducation.getSelectedItemPosition();
 					if (selectedIndex != Spinner.INVALID_POSITION)
 						UserProfile.EducationLevel = selectedIndex;
-					UserProfile.UserGender = btnMale.isChecked() ? Gender.G_Male : Gender.G_Female;
+					UserProfile.UserGender = mRadioMale.isChecked() ? Gender.G_Male : Gender.G_Female;
 					if (mEditEmail.getText().length() > 0)
 						UserProfile.Email = mEditEmail.getText().toString();
 					if (mEditPhone.getText().length() > 0)
@@ -226,14 +231,16 @@ public class PersonalInfoActivity extends Activity {
 						birthdate += mDays[mSpinDay.getSelectedItemPosition()];
 						UserProfile.BirthDate = birthdate;
 					}					
-					UserProfile.Marital = btnSingle.isChecked() ? MaritalStatus.MS_Single : MaritalStatus.MS_Married;
-					
+					UserProfile.Marital = mRadioSingle.isChecked() ? MaritalStatus.MS_Single : MaritalStatus.MS_Married;
+
 					ShowToast("اطلاعات شما ثبت گردید");
 				} catch (Exception ex) {
 					Log.d("PersonalInfo", ex.getMessage());
 				}
 			}
 		});
+
+		loadData();
 	}
 
 	@Override
@@ -241,6 +248,47 @@ public class PersonalInfoActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.personal_info, menu);
 		return true;
+	}
+
+	private void loadData() {
+		mEditFirstName.setText(UserProfile.FirstName);
+		mEditLastName.setText(UserProfile.LastName);
+		mEditNationalID.setText(UserProfile.NationalID);
+		mEditPhone.setText(UserProfile.PhoneNumber);
+		mEditEmail.setText(UserProfile.Email);
+		mSpinBirthProvince.setSelection(UserProfile.BirthProvince);
+		mSpinResidenceProvince.setSelection(UserProfile.ResidenceProvince);
+		mSpinEducation.setSelection(UserProfile.EducationLevel);
+		if (UserProfile.UserGender == Gender.G_Male) {
+			mRadioMale.setChecked(true);
+			mRadioFemale.setChecked(false);
+		} else {
+			mRadioMale.setChecked(false);
+			mRadioFemale.setChecked(true);
+		}
+		if (UserProfile.Marital == MaritalStatus.MS_Single) {
+			mRadioSingle.setChecked(true);
+			mRadioMarried.setChecked(false);
+		} else {
+			mRadioSingle.setChecked(false);
+			mRadioMarried.setChecked(true);
+		}
+
+		int birthDay = 0;
+		int birthMonth = 0;
+		int birthYear = 0;
+		
+		try {
+			String[] tokens = UserProfile.BirthDate.split("/");
+			birthDay = Integer.parseInt(tokens[2]) - 1;
+			birthMonth = Integer.parseInt(tokens[1]) - 1;
+			birthYear = 1383 - Integer.parseInt(tokens[0]);
+		} catch (Exception ex) {
+		} finally {
+			mSpinDay.setSelection(birthDay);
+			mSpinMonth.setSelection(birthMonth);
+			mSpinYear.setSelection(birthYear);
+		}
 	}
 
 	private void ShowToast(String message) {

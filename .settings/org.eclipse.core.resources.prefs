@@ -1,4 +1,4 @@
-#Sun Oct 12 14:35:36 IRST 2014
+#Tue Oct 14 13:50:18 IRST 2014
 eclipse.preferences.version=1
 encoding//src/rayanhiva/SalamatYar/KB.java=UTF-8
 encoding//src/rayanhiva/telemedicine/hamrahsalamatmini/LoginActivity.java=UTF-8
@@ -6,3 +6,4 @@ encoding//src/rayanhiva/telemedicine/hamrahsalamatmini/MainActivity.java=UTF-8
 encoding//src/rayanhiva/telemedicine/hamrahsalamatmini/PersonalInfoActivity.java=UTF-8
 encoding//src/rayanhiva/telemedicine/hamrahsalamatmini/SignupActivity.java=UTF-8
 encoding//src/rayanhiva/telemedicine/hamrahsalamatmini/SubmitHealthActivity.java=UTF-8
+encoding//src/rayanhiva/telemedicine/hamrahsalamatmini/UserProfile.java=UTF-8

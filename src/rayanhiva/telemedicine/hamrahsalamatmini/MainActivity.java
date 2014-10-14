@@ -54,48 +54,50 @@ public class MainActivity extends Activity {
 		loginBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				try {
-					int simState = SimUtility.GetSimState(me);
-					if (simState == TelephonyManager.SIM_STATE_READY) {
-						if (mDb.GetAppState() < 1) {
-							try {
-								ShowDialog("ارسال پیامک",
-								"در حال ارسال پیامک به سرور لطفا منتظر بمانید.");
-								new Thread(new Runnable() {
-									@Override
-									public void run() {
-										try {
-											Thread.sleep(5000);
-										} catch (InterruptedException e) {
-											// TODO Auto-generated catch block
-											e.printStackTrace();
-										}
-										SimUtility.sendSMS(me, KB.SMSServer, KB.RegisterMessage);								
-										mHandler.post(new Runnable() {
-											@Override
-											public void run() {
-												mDialog.cancel();
-											}
-										});
-									}
-								}).start();
-
-							} catch (Exception ex) {
-								ShowToast("خطا در هنگام ارسال پیامک ");
-								if (mDialog != null) {
-									if (mDialog.isShowing())
-										mDialog.cancel();
-								}
-							}
-						} else {
-							ShowToast("ثبت نام شما انجام شده است. لطفا وارد سامانه شوید.");
-						}
-					} else {
-						ShowToast("برای ثبت نام لطفا سیم کارت دستگاه را فعال کنید.");
-					}
-				} catch (Exception ex) {
-					ShowToast(ex.getMessage());
-				}
+				Intent intent = new Intent(This, SignupActivity.class);
+				startActivity(intent);
+//				try {
+//					int simState = SimUtility.GetSimState(me);
+//					if (simState == TelephonyManager.SIM_STATE_READY) {
+//						if (mDb.GetAppState() < 1) {
+//							try {
+//								ShowDialog("ارسال پیامک",
+//								"در حال ارسال پیامک به سرور لطفا منتظر بمانید.");
+//								new Thread(new Runnable() {
+//									@Override
+//									public void run() {
+//										try {
+//											Thread.sleep(5000);
+//										} catch (InterruptedException e) {
+//											// TODO Auto-generated catch block
+//											e.printStackTrace();
+//										}
+//										SimUtility.sendSMS(me, KB.SMSServer, KB.RegisterMessage);								
+//										mHandler.post(new Runnable() {
+//											@Override
+//											public void run() {
+//												mDialog.cancel();
+//											}
+//										});
+//									}
+//								}).start();
+//
+//							} catch (Exception ex) {
+//								ShowToast("خطا در هنگام ارسال پیامک ");
+//								if (mDialog != null) {
+//									if (mDialog.isShowing())
+//										mDialog.cancel();
+//								}
+//							}
+//						} else {
+//							ShowToast("ثبت نام شما انجام شده است. لطفا وارد سامانه شوید.");
+//						}
+//					} else {
+//						ShowToast("برای ثبت نام لطفا سیم کارت دستگاه را فعال کنید.");
+//					}
+//				} catch (Exception ex) {
+//					ShowToast(ex.getMessage());
+//				}
 			}
 		});
 	}

@@ -53,7 +53,7 @@ public class SignupActivity extends Activity {
 			public void onClick(View v) {
 				// TODO: Create a 4-digit code and send it to the given phone number
 				Random random = new Random();
-				mValidationCode = String.valueOf(Math.floor(random.nextDouble() * 8889) + 1111);
+				mValidationCode = String.valueOf((int)(Math.floor(random.nextDouble() * 8889) + 1111));
 				Log.d("Signup", mValidationCode);
 				
 				ShowToast("یک کد 4 رقمی به شماره شما ارسال شده است."
